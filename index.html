@@ -12,10 +12,12 @@
       <h2 style="margin-top: 1em;">Begin your character</h2>
       <h4>First we need some information.</h4>
       <form style="width: 66%">
+
         <fieldset class="form-group">
           <label for="name">Your Name</label>
           <input type="text" class="form-control" id="name" placeholder="Roger Chillingworth">
         </fieldset>
+
         <fieldset class="form-group">
           <label for="gender">Gender</label>
           <select class="form-control" id="gender">
@@ -26,10 +28,39 @@
             <option>Other</option>
           </select>
         </fieldset>
-        <div class="form-group inline">
+
+        <fieldset class="form-group">
+          <label for="age">Age</label>
+          <input type="number" class="form-control" id="age" placeholder="42">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="age">Height</label>
+          <input type="text" class="form-control" id="age" placeholder="5'11&quot;">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="race">Race</label>
+          <select class="form-control" id="race">
+            <option>High Elf</option>
+            <option>Dark Elf</option>
+            <option>Gnome</option>
+            <option>Dwarf</option>
+            <option>Halfling</option>
+            <option>Human</option>
+            <option>Orc</option>
+            <option>Spirit</option>
+            <option>Demon</option>
+            <option>Goliath</option>
+            <option>Falconite</option>
+          </select>
+        </fieldset>
+
+        <div class="form-group">
           <label for="modifier">Modifier</label>
           <input type="text" class="form-control" id="modifier" placeholder="Ice">
         </div>
+
         <div class="form-group inline">
           <label for="class">Class</label>
           <div class="input-group">
@@ -50,11 +81,20 @@
             </select>
           </div>
         </div>
+
+
       </form>
     </div>
 
     <script>
       $(document).ready(function() {
+        class StatSet{
+          constructor (str, con, dex, int, wis, chr) {
+
+          }
+        }
+
+
         $("#modifier").change(function() {
           $("#modClassPrefix").html($("#modifier").val());
         });
