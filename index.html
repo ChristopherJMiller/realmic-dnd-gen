@@ -2,6 +2,7 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -11,7 +12,7 @@
       </nav>
       <h2 style="margin-top: 1em;">Begin your character</h2>
       <h4>First we need some information.</h4>
-      <form style="width: 66%">
+      <form style="width: 66%" id="form">
 
         <fieldset class="form-group">
           <label for="name">Your Name</label>
@@ -82,22 +83,32 @@
           </div>
         </div>
 
-
+        <button type="button" class="btn btn-primary">Submit</button>
       </form>
     </div>
 
     <script>
       $(document).ready(function() {
-        class StatSet{
-          constructor (str, con, dex, int, wis, chr) {
-
-          }
-        }
-
+        //Class Bonus's
+        var classBonus = [];
+        classBonus["Barbarian"] = new StatSet(2, 2, 2, -3, -3, -4);
+        classBonus["Bard"] = new StatSet(-2, -1, 1, 3, 3, 4);
+        classBonus["Cleric"] = new StatSet(-1, 1, 1, 3, 2, 2);
+        classBonus["Druid"] = new StatSet(1, 1, 2, 2, 4, 1);
+        classBonus["Fighter"] = new StatSet(3, 1, 2, 1, 0, 2);
+        classBonus["Monk"] = new StatSet(3, -3, 3, 3, 3, 2);
+        classBonus["Paladin"] = new StatSet(2, 1, -3, 3, 3, 3);
+        classBonus["Ranger"] = new StatSet(2, -3, 3, 1, 3, 0);
+        classBonus["Rouge"] = new StatSet(4, -4, 3, 2, 4, -2);
+        classBonus["Sorcerer"] = new StatSet(-2, -2, 0, 4, 4, -4);
+        classBonus["Warlock"] = new StatSet(-1, -3, -2, 6, 4, -6);
+        classBonus["Wizard"] = new StatSet(-1, -4, -4, 5, 5, -4);
 
         $("#modifier").change(function() {
           $("#modClassPrefix").html($("#modifier").val());
         });
+
+      
       });
     </script>
   </body>
