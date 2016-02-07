@@ -110,10 +110,28 @@
         });
 
         $("#submitChar").click(function() {
-
+          var send = {
+            "jsonrpc": "2.0",
+             "method": "generateIntegers",
+             "params": {
+                 "apiKey": key,
+                 "n": 18,
+                 "min": 1,
+                 "max": 20,
+                 "replacement": true
+             },
+             "id": 12312
+           };
+           var stats;
+           var result = $.post("https://api.random.org/json-rpc/1/invoke", JSON.stringify(send), function(data) {
+             stats = data["result"]["random"]["data"];
+             console.log(stats);
+              for (var i = 0; i < 6; i++) {
+                stats[i] += classBonus[$("#class").val()][i];
+              }
+              console.log(stats);
+           }, "json");
         });
-
-        };
       });
     </script>
   </body>
