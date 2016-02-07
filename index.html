@@ -6,9 +6,51 @@
   </head>
   <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-light bg-faded">
+      <nav class="navbar navbar-dark bg-inverse">
         <a class="navbar-brand" href="#">Realmic DnD Character Creator</a>
       </nav>
+      <h2 style="margin-top: 1em;">Begin your character</h2>
+      <h4>First we need some information.</h4>
+      <form style="width: 66%">
+        <fieldset class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Roger Chillingworth">
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="gender">Gender</label>
+          <select class="form-control" id="gender">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Transgender MTF</option>
+            <option>Transgender FTM</option>
+            <option>Other</option>
+          </select>
+        </fieldset>
+        <div class="form-group inline">
+          <label for="modifier">Modifier</label>
+          <input type="text" class="form-control" id="modifier" placeholder="Ice">
+        </div>
+        <div class="form-group inline">
+          <label for="class">Class</label>
+          <div class="input-group">
+            <div class="input-group-addon"></div>
+            <select class="form-control" id="class">
+              <option>Barbarian</option>
+              <option>Bard</option>
+              <option>Cleric</option>
+              <option>Druid</option>
+              <option>Fighter</option>
+              <option>Monk</option>
+              <option>Paladin</option>
+              <option>Ranger</option>
+              <option>Rouge</option>
+              <option>Sorcerer</option>
+              <option>Warlock</option>
+              <option>Wizard</option>
+            </select>
+          </div>
+        </div>
+      </form>
     </div>
   </body>
 </html>
