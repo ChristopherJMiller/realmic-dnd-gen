@@ -33,7 +33,7 @@
         <div class="form-group inline">
           <label for="class">Class</label>
           <div class="input-group">
-            <div class="input-group-addon"></div>
+            <div class="input-group-addon" id="modClassPrefix"></div>
             <select class="form-control" id="class">
               <option>Barbarian</option>
               <option>Bard</option>
@@ -52,5 +52,13 @@
         </div>
       </form>
     </div>
+
+    <script>
+      $(document).ready(function() {
+        $("#modifier").change(function() {
+          $("#modClassPrefix").html($("#modifier").val());
+        });
+      });
+    </script>
   </body>
 </html>
