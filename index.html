@@ -139,10 +139,19 @@
               }
               $("#cardBlock").html("");
               //Creating the card
-              $("#cardBlock").append('<h4 class="card-title" id="card_name">' + $("#name").val() + '</h4>');
+              $("#cardBlock").append('<h2 class="card-title" id="card_name">' + $("#name").val() + '</h2>');
+              $("#cardBlock").append('<p class="card-text" id="card_size">Gender: ' + $("#gender").val() + '</p>');
+              $("#cardBlock").append('<p class="card-text" id="card_size">Age: ' + $("#age").val() + '</p>');
+              $("#cardBlock").append('<p class="card-text" id="card_size">Height: ' + $("#height").val() + '</p>');
+              $("#cardBlock").append('<p class="card-text" id="card_size">Alignment: ' + $("#alignment").val() + '</p>');
+              $("#cardBlock").append('<p class="card-text" id="card_size">Race: ' + $("#race").val() + '</p>');
+              $("#cardBlock").append('<p class="card-text" id="card_size">Class: ' + $("#modifier").val() + ' ' + $("#class").val() + '</p>');
+              $("#cardBlock").append('<p class="card-text" id="card_size">Level: 0</p>');
+
+              $("#cardBlock").append('<h4 class="card-title" id="card_name">Stats</h4>');
 
               for (var o = 0; o < 18; o++) {
-                $("#cardBlock").append('<p class="card-text" id="card_size">' + stats[o] + '</p>');
+                $("#cardBlock").append('<p class="card-text" id="card_size">' + adjustedStats[o] + ': ' + stats[o] + '</p>');
               }
               console.log(stats);
            }, "json");
