@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/xml2json.min.js"></script>
     <script src="js/randomorgkey.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
   </head>
@@ -52,8 +53,8 @@
         </fieldset>
 
         <fieldset class="form-group">
-          <label for="age">Height</label>
-          <input type="text" class="form-control" id="age" placeholder="5'11&quot;">
+          <label for="height">Height</label>
+          <input type="text" class="form-control" id="height" placeholder="5'11&quot;">
         </fieldset>
 
         <fieldset class="form-group">
@@ -107,7 +108,13 @@
 
         </div>
       </div>
-    </div>
+
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">XML Code for Excel Import</h4>
+          <p class="card-text" id="xml"></p>
+        </div>
+      </div>
 
     <script>
       $(document).ready(function() {
@@ -132,28 +139,52 @@
            var stats;
            var result = $.post("https://api.random.org/json-rpc/1/invoke", JSON.stringify(send), function(data) {
              stats = data["result"]["random"]["data"];
-             console.log(stats);
              var boost = classBonus[$("#class").val()].getStats();
               for (var i = 0; i < 6; i++) {
-                stats[i] += boost[i];
+                stats[i] -= boost[i];
               }
+              var x2js = new X2JS();
+              var jsonData = {};
+
               $("#cardBlock").html("");
               //Creating the card
               $("#cardBlock").append('<h2 class="card-title" id="card_name">' + $("#name").val() + '</h2>');
+              jsonData["Name"] = $("#name").val();
+
               $("#cardBlock").append('<p class="card-text" id="card_size">Gender: ' + $("#gender").val() + '</p>');
+              jsonData["Gender"] = $("#gender").val();
+
               $("#cardBlock").append('<p class="card-text" id="card_size">Age: ' + $("#age").val() + '</p>');
+              jsonData["Age"] = $("#age").val();
+
               $("#cardBlock").append('<p class="card-text" id="card_size">Height: ' + $("#height").val() + '</p>');
+              jsonData["Height"] = $("#height").val();
+
               $("#cardBlock").append('<p class="card-text" id="card_size">Alignment: ' + $("#alignment").val() + '</p>');
+              jsonData["Alignment"] = $("#alignment").val();
+
               $("#cardBlock").append('<p class="card-text" id="card_size">Race: ' + $("#race").val() + '</p>');
+              jsonData["Race"] = $("#race").val();
+
               $("#cardBlock").append('<p class="card-text" id="card_size">Class: ' + $("#modifier").val() + ' ' + $("#class").val() + '</p>');
+              jsonData["Modifier"] = $("#modifier").val();
+              jsonData["Class"] = $("#class").val();
+
               $("#cardBlock").append('<p class="card-text" id="card_size">Level: 0</p>');
+              jsonData["Level"] = 0;
 
               $("#cardBlock").append('<h4 class="card-title" id="card_name">Stats</h4>');
+              jsonData["Stats"] = {};
 
               for (var o = 0; o < 18; o++) {
+                if (stats[o] < 1) {
+                  stats[o] = 1;
+                }
                 $("#cardBlock").append('<p class="card-text" id="card_size">' + adjustedStats[o] + ': ' + stats[o] + '</p>');
+                jsonData["Stats"][adjustedStats[o]] = stats[o].toString();
               }
-              console.log(stats);
+              var xmlAsStr = x2js.json2xml_str ( jsonData );
+              $("#xml").text("<xml>" + xmlAsStr + "</xml>");
            }, "json");
         });
       });
