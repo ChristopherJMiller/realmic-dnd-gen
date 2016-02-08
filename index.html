@@ -181,6 +181,9 @@
                 if (stats[o] < 1) {
                   stats[o] = 1;
                 }
+                if (stats[o] > 20) {
+                  stats[o] = 20;
+                }
                 $("#cardBlock").append('<p class="card-text" id="card_size">' + adjustedStats[o] + ': ' + stats[o] + '</p>');
                 jsonData["Stats"][adjustedStats[o]] = stats[o].toString();
               }
