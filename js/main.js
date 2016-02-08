@@ -18,17 +18,17 @@ class StatSet {
 
 //Class Bonus's
 var classBonus = [];
-classBonus["Barbarian"] = new StatSet(2, 2, 2, -3, -3, -4);
-classBonus["Bard"] = new StatSet(-2, -1, 1, 3, 3, 4);
-classBonus["Cleric"] = new StatSet(-1, 1, 1, 3, 2, 2);
-classBonus["Druid"] = new StatSet(1, 1, 2, 2, 4, 1);
-classBonus["Fighter"] = new StatSet(3, 1, 2, 1, 0, 2);
-classBonus["Monk"] = new StatSet(3, -3, 3, 3, 3, 2);
-classBonus["Paladin"] = new StatSet(2, 1, -3, 3, 3, 3);
-classBonus["Ranger"] = new StatSet(2, -3, 3, 1, 3, 0);
-classBonus["Rouge"] = new StatSet(4, -4, 3, 2, 4, -2);
-classBonus["Sorcerer"] = new StatSet(-2, -2, 0, 4, 4, -4);
-classBonus["Warlock"] = new StatSet(-1, -3, -2, 6, 4, -6);
-classBonus["Wizard"] = new StatSet(-1, -4, -4, 5, 5, -4);
+classBonus["Barbarian"] = new StatSet(3, 3, 3, -4, -4, -5);
+classBonus["Bard"] = new StatSet(-3, -2, 2, 4, 4, 5);
+classBonus["Cleric"] = new StatSet(-2, 2, 2, 4, 3, 3);
+classBonus["Druid"] = new StatSet(2, 2, 3, 3, 5, 2);
+classBonus["Fighter"] = new StatSet(4, 4, 3, 2, 1, 3);
+classBonus["Monk"] = new StatSet(4, -4, 4, 4, 4, 3);
+classBonus["Paladin"] = new StatSet(3, 2, -4, 4, 4, 4);
+classBonus["Ranger"] = new StatSet(3, -4, 4, 2, 4, 1);
+classBonus["Rouge"] = new StatSet(5, -5, 4, 3, 5, -3);
+classBonus["Sorcerer"] = new StatSet(-3, -3, 1, 5, 5, -5);
+classBonus["Warlock"] = new StatSet(-2, -4, -3, 7, 5, -7);
+classBonus["Wizard"] = new StatSet(-2, -5, -5, 6, 6, -5);
 
 var adjustedStats = ["Strength", "Constitution", "Dexterity", "Intelligence", "Wisdom", "Charisma", "Acrobatics", "Arcana", "Bluff", "Diplomacy", "Endurance", "History", "Insight", "Intimidate", "Perception", "Stealth", "Streetwise", "Thievery"];
