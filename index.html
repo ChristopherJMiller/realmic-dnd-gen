@@ -32,6 +32,21 @@
         </fieldset>
 
         <fieldset class="form-group">
+          <label for="alignment">Alignment</label>
+          <select class="form-control" id="alignment">
+            <option>Lawful Good</option>
+            <option>Neutral Good</option>
+            <option>Chaotic Good</option>
+            <option>Lawful Neutral</option>
+            <option>Neutral</option>
+            <option>Chaotic Neutral</option>
+            <option>Lawful Evil</option>
+            <option>Neutral Evil</option>
+            <option>Chaotic Evil</option>
+          </select>
+        </fieldset>
+
+        <fieldset class="form-group">
           <label for="age">Age</label>
           <input type="number" class="form-control" id="age" placeholder="42">
         </fieldset>
@@ -86,24 +101,16 @@
 
         <button type="button" class="btn btn-primary" id="submitChar">Submit</button>
       </form>
+
+      <div class="card">
+        <div class="card-block" id="cardBlock">
+
+        </div>
+      </div>
     </div>
 
     <script>
       $(document).ready(function() {
-        //Class Bonus's
-        var classBonus = [];
-        classBonus["Barbarian"] = new StatSet(2, 2, 2, -3, -3, -4);
-        classBonus["Bard"] = new StatSet(-2, -1, 1, 3, 3, 4);
-        classBonus["Cleric"] = new StatSet(-1, 1, 1, 3, 2, 2);
-        classBonus["Druid"] = new StatSet(1, 1, 2, 2, 4, 1);
-        classBonus["Fighter"] = new StatSet(3, 1, 2, 1, 0, 2);
-        classBonus["Monk"] = new StatSet(3, -3, 3, 3, 3, 2);
-        classBonus["Paladin"] = new StatSet(2, 1, -3, 3, 3, 3);
-        classBonus["Ranger"] = new StatSet(2, -3, 3, 1, 3, 0);
-        classBonus["Rouge"] = new StatSet(4, -4, 3, 2, 4, -2);
-        classBonus["Sorcerer"] = new StatSet(-2, -2, 0, 4, 4, -4);
-        classBonus["Warlock"] = new StatSet(-1, -3, -2, 6, 4, -6);
-        classBonus["Wizard"] = new StatSet(-1, -4, -4, 5, 5, -4);
 
         $("#modifier").change(function() {
           $("#modClassPrefix").html($("#modifier").val());
@@ -126,8 +133,16 @@
            var result = $.post("https://api.random.org/json-rpc/1/invoke", JSON.stringify(send), function(data) {
              stats = data["result"]["random"]["data"];
              console.log(stats);
+             var boost = classBonus[$("#class").val()].getStats();
               for (var i = 0; i < 6; i++) {
-                stats[i] += classBonus[$("#class").val()][i];
+                stats[i] += boost[i];
+              }
+              $("#cardBlock").html("");
+              //Creating the card
+              $("#cardBlock").append('<h4 class="card-title" id="card_name">' + $("#name").val() + '</h4>');
+
+              for (var o = 0; o < 18; o++) {
+                $("#cardBlock").append('<p class="card-text" id="card_size">' + stats[o] + '</p>');
               }
               console.log(stats);
            }, "json");
